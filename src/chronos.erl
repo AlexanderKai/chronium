@@ -17,20 +17,18 @@ init([]) ->
 	[Pools_1, Pools_2] = Pools,
 	Pools1 = [Pools_1],
 	Pools2 = [Pools_2],
-    PoolSpecs = lists:map(fun({Name, SizeArgs, WorkerArgs}) ->
-   		PoolArgs = [{name, {local, Name}},
-                    {worker_module, chronos_worker}] ++ SizeArgs,
-        poolboy:child_spec(Name, PoolArgs, WorkerArgs)
-    end, Pools1),
-    PoolSpecs1 = lists:map(fun({Name, SizeArgs, WorkerArgs}) ->
+	PoolSpecs = lists:map(fun({Name, SizeArgs, WorkerArgs}) ->
+		PoolArgs = [{name, {local, Name}},
+			{worker_module, chronos_worker}] ++ SizeArgs,
+	poolboy:child_spec(Name, PoolArgs, WorkerArgs)
+	end, Pools1),
+    	PoolSpecs1 = lists:map(fun({Name, SizeArgs, WorkerArgs}) ->
    		PoolArgs = [{name, {local, Name}},
                     {worker_module, chronos_queue}] ++ SizeArgs,
         poolboy:child_spec(Name, PoolArgs, WorkerArgs)
-    end, Pools2),
+	end, Pools2),
 	{ok, {{one_for_one, 10, 10}, lists:flatten(PoolSpecs ++ PoolSpecs1)}}
 	catch
 		E1:E2 ->
-		?dbgv("", E1), 
-		?dbgv("", E2),
-		?dbgv("stack", erlang:get_stacktrace())
+		io:format("~p~n~p~n~p~n", [E1, E2, erlang:get_stacktrace()]) 
 	end.
