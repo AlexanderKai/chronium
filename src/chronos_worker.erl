@@ -105,8 +105,7 @@ handle_cast({check, _From, Args, Tab, Worker}, State) ->
 			[true, true] ->
 				case DebugPrint of
 					on ->
-						?dbgv("fired", Name),
-						?dbgv("time", Now);
+						io:format("Fired ~p~nTime ~p~n", [Name, Now]);
 					_ -> []
 				end,
 	            run(Name, Now, Tab),
