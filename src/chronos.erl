@@ -2,10 +2,9 @@
 -include_lib("main.hrl").
 -behaviour(supervisor).
 -behaviour(application).
--export([init/1, start/0, start/2, stop/1, start_link/0]).
+-export([init/1, start/2, stop/1, start_link/0]).
 
 
-start()    -> start(normal,[]).
 start(_,_) -> chronos:start_link().
 start_link() -> supervisor:start_link({local,?MODULE},?MODULE,[]).
 stop(_)    -> ok.
