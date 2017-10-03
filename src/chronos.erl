@@ -1,5 +1,4 @@
 -module(chronos).
--include_lib("main.hrl").
 -behaviour(supervisor).
 -behaviour(application).
 -export([init/1, start/2, stop/1, start_link/0]).

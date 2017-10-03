@@ -1,6 +1,5 @@
 -module(chronos_queue).
 -behaviour(gen_server).
--include_lib("main.hrl").
 
 -export([start_link/1]).
 -export([init/1, handle_cast/2, handle_info/2, terminate/2,
@@ -57,9 +56,7 @@ do_jobs(Key, Pool) ->
 				Worker
 			catch
 				E1:E2 ->
-				?dbgv("", E1), 
-				?dbgv("", E2),
-				?dbgv("stack", erlang:get_stacktrace())
+					io:format("Job is crashed!~n~p ~p~n~p",[E1, E2, erlang:get_stacktrace()])
 			end;
 		_ -> []
 	end,
