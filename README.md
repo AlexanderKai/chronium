@@ -31,7 +31,7 @@ Example of config file (sys.config):
 			,
 			{"job3",
 				[
-					{time,	{"*/20","*","*","*","12","5","2017"}},
+					{time,	{"*","*","*","*","12","5","2017"}},
 					% every friday in December 2017
 					{max_retries, 0},
 					{period_restart, 0},
