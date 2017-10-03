@@ -12,7 +12,8 @@ Example of config file (sys.config):
 		[
 		 	{"job1",
 				[
-					{time,	{"*/15","*","*","7","*","*","*"}}, % every 15 seconds on 7th day of month
+					{time,	{"*/15","*","*","7","*","*","*"}}, 
+					% every 15 seconds on 7th day of month
 					{max_retries, 0},
 					{period_restart, 0},
 					{mfa, {module,job1,[arg1, arg2, <<"arg3">>]}}
@@ -20,7 +21,8 @@ Example of config file (sys.config):
 			},
 			{"job2",
 				[
-					{time,	{"0","10-20","*","*","*","*","*"}}, % one time in minute from 10th to 20th minute every hour
+					{time,	{"0","10-20","*","*","*","*","*"}},
+					 % one time in minute from 10th to 20th minute every hour
 					{max_retries, 0},
 					{period_restart, 0},
 					{mfa, {module,job2,[]}}
@@ -29,7 +31,8 @@ Example of config file (sys.config):
 			,
 			{"job3",
 				[
-					{time,	{"*/20","*","*","*","12","5","2017"}}, every friday in December 2017
+					{time,	{"*/20","*","*","*","12","5","2017"}},
+					% every friday in December 2017
 					{max_retries, 0},
 					{period_restart, 0},
 					{mfa, {module,job3,[]}}
