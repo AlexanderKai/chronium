@@ -19,12 +19,9 @@ init(_Args) ->
 	
 	Tab = ets:new(chronos, [public, named_table, set]),
     put(tab, Tab),
-
-	%CommonSettings = proplists:get_value(settings, Settings),
     put(common_settings, Settings),
 
 	{ok, Jobs} = application:get_env(chronos, jobs),
-	io:format("Chronos Jobs~n~p~nSettings~n~p~n", [Jobs, Settings]),
 	ets:insert(chronos, initialize_settings(Jobs)),
 	Timer = erlang:send_after(1, self(), poll),
 	

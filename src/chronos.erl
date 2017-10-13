@@ -30,3 +30,29 @@ init([]) ->
 		E1:E2 ->
 		io:format("~p~n~p~n~p~n", [E1, E2, erlang:get_stacktrace()]) 
 	end.
+
+add_jobs(Args) ->
+	NewJobs = [
+		{Name, lists:flatten([{state, idle}, {last, undefined}|Settings])}
+	||
+	{Name, Settings} <- Args],
+	ets:insert(chronos, NewJobs).
+
+remove_job(Name) ->
+	ets:take(chronos, Name).
+
+get_jobs() ->
+	Key = ets:first(chronos),
+	case Key of
+		'$end_of_table' ->
+			[];
+		K -> get_jobs(K, [K])
+	end.
+
+get_jobs(K, List) ->	
+	Next = ets:next(chronos, K),
+	case Next of
+		'$end_of_table' ->
+			List;
+		N -> get_jobs(N, [N|List])
+	end.
