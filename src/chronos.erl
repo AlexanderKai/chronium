@@ -1,7 +1,7 @@
 -module(chronos).
 -behaviour(supervisor).
 -behaviour(application).
--export([init/1, start/2, stop/1, start_link/0]).
+-export([init/1, start/2, stop/1, start_link/0, add_jobs/1, remove_job/1]).
 
 
 start(_,_) -> chronos:start_link().
