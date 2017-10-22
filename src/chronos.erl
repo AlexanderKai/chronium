@@ -33,7 +33,7 @@ init([]) ->
 
 add_jobs(Args) ->
 	NewJobs = [
-		{Name, lists:flatten([{state, idle}, {last, undefined}|Settings])}
+		{Name, lists:append([{state, idle}, {last, undefined}], Settings)}
 	||
 	{Name, Settings} <- Args],
 	ets:insert(chronos, NewJobs).
