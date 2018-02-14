@@ -138,7 +138,11 @@ handle_info({check, From, Name, MFA}, #state{retries=Tries}=State) ->
 		E1:E2 -> []
 	end,
 	From ! {is_stopped, Name}, 
-    {noreply, State}.
+    {noreply, State};
+
+handle_info(A, State) ->
+	io:format("~nChronos. Unknown message ~n~p~n", [A]),
+	{noreply, State}.
 
 terminate(_Reason, _State) ->
     ok.
