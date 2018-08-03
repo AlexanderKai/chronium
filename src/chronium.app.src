@@ -1,0 +1,11 @@
+{application, chronium,
+	[
+		{description, "Chronium"},
+		{vsn, "0.1.1"},
+		{applications,[kernel,stdlib]},
+		{modules,[chronium, chronium_queue, chronium_worker]},
+		{registered,[chronium]},
+	 	{mod,{chronium,[]}},
+		{env, []}
+	]
+}.
