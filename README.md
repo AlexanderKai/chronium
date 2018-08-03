@@ -1,4 +1,4 @@
-# chronos
+# Chronium
 Scheduler for Erlang.
 
 It's kind of cron on Linux systems. Configuration file also looks like as in cron.
@@ -7,7 +7,7 @@ But there is slight difference. Seconds was added to format of configuration fil
 Example of part of config file (sys.config):
 
 ```erlang
-{chronos,
+{chronium,
 	[{jobs, 
 		[
 		 	{"job1",
@@ -42,19 +42,19 @@ Example of part of config file (sys.config):
 	},
 	{pools,
 		[
-           	{chronos_worker, 
-			 	[
-        	        {size, 40},
-    	            {max_overflow, 60}
-	            ], 
+			{chronium_worker, 
 				[
-            	]
+					{size, 40},
+					{max_overflow, 60}
+				], 
+				[
+				]
 			},
-			{chronos_queue, 
-			 	[
-        	        {size, 1},
-    	            {max_overflow, 1}
-	            ], 
+			{chronium_queue, 
+				[
+					{size, 1},
+					{max_overflow, 1}
+				], 
 				[
 				]
 			}
